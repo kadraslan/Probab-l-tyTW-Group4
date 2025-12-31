@@ -1,7 +1,16 @@
+IE221 – Probability and Statistics
+Team Work 3
+
+Strong Law of Large Numbers (SLLN) Simulation
+
+This script experimentally verifies the Strong Law of Large Numbers.
+Independent and identically distributed random variables are generated
+from a Uniform(0,1) distribution. The cumulative sample mean is computed
+and shown to converge almost surely to the expected value μ = 0.5.
+
 import numpy as np
 import matplotlib.pyplot as plt
 
-# U[0,1] dağılımından 10,000 örneklem [cite: 54, 56]
 n = 10000
 x = np.random.uniform(0, 1, n)
 cumulative_mean = np.cumsum(x) / np.arange(1, n + 1)
@@ -16,6 +25,5 @@ plt.title("SLLN Convergence")
 plt.legend()
 plt.grid()
 
-# Kaydetme [cite: 35, 91]
 plt.savefig('../results/figures/slln_convergence.png')
 plt.show()
