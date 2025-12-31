@@ -1,3 +1,13 @@
+IE221 – Probability and Statistics
+Team Work 3
+
+Central Limit Theorem (CLT) Simulation
+
+This script illustrates the Central Limit Theorem using sums of i.i.d.
+Uniform(0,1) random variables. For increasing sample sizes, the
+standardized sums are shown to converge in distribution to N(0,1)
+using histograms and Normal Q-Q plots.
+    
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
