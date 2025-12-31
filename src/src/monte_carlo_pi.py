@@ -1,3 +1,13 @@
+IE221 – Probability and Statistics
+Team Work 3
+
+Monte Carlo Estimation of Pi
+
+This script estimates the value of π using the Monte Carlo method.
+Random points are generated inside the unit square [0,1]×[0,1].
+The proportion of points falling inside the unit quarter-circle
+converges to π/4 by the Strong Law of Large Numbers.
+  
 import numpy as np
 import matplotlib.pyplot as plt
 
