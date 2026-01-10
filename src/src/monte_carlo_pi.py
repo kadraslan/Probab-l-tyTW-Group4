@@ -1,30 +1,58 @@
-IE221 – Probability and Statistics
-Team Work 3
-
-Monte Carlo Estimation of Pi
-
-This script estimates the value of π using the Monte Carlo method.
-Random points are generated inside the unit square [0,1]×[0,1].
-The proportion of points falling inside the unit quarter-circle
-converges to π/4 by the Strong Law of Large Numbers.
-  
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
-# Monte Carlo Pi Tahmini [cite: 73, 80]
-n = 10000
-x = np.random.uniform(0, 1, n)
-y = np.random.uniform(0, 1, n)
+def estimate_pi_monte_carlo(n=10000):
+    """
+    Estimates the value of pi using the Monte Carlo method.
+    
+    This function generates random points in a unit square [0,1]x[0,1] and 
+    calculates the ratio of points falling inside the unit quarter-circle. 
+    By SLLN, this ratio multiplied by 4 converges to pi as n increases.
 
-inside_circle = (x**2 + y**2) <= 1
-pi_estimates = 4 * np.cumsum(inside_circle) / np.arange(1, n + 1)
+    Parameters:
+    -----------
+    n : int, optional
+        The total number of random points to generate. Default is 10000.
 
-plt.figure(figsize=(10, 6))
-plt.plot(pi_estimates, label='Estimated Pi')
-plt.axhline(y=np.pi, color='r', linestyle='--', label='True Pi (3.14159)')
-plt.xlabel('Number of Points (n)')
-plt.ylabel('Pi Value')
-plt.legend()
-plt.grid(True)
-plt.savefig('../results/figures/pi_estimation.png') # [cite: 35, 91]
-plt.show()
+    Returns:
+    --------
+    None
+        Displays a convergence plot and saves it to '../results/figures/pi_estimation.png'.
+    """
+    
+    # Generate random x and y coordinates from a Uniform(0,1) distribution
+    x = np.random.uniform(0, 1, n)
+    y = np.random.uniform(0, 1, n)
+
+    # Check if points fall inside the quarter-circle (x^2 + y^2 <= 1)
+    inside_circle = (x**2 + y**2) <= 1
+    
+    # Calculate the running estimate of pi: 
+    # (Cumulative sum of points inside / Number of points processed) * 4
+    pi_estimates = 4 * np.cumsum(inside_circle) / np.arange(1, n + 1)
+
+    # Visualization of the estimation process
+    plt.figure(figsize=(10, 6))
+    plt.plot(pi_estimates, label='Monte Carlo Estimate')
+    
+    # Theoretical value of pi for comparison
+    plt.axhline(y=np.pi, color='r', linestyle='--', label=f'True Pi ({np.pi:.5f})')
+    
+    plt.xlabel('Number of Points (n)')
+    plt.ylabel('Estimated Value of Pi')
+    plt.title('Monte Carlo Estimation of Pi Convergence')
+    plt.legend()
+    plt.grid(True)
+
+    # Ensure the output directory exists and save the figure
+    output_path = '../results/figures/pi_estimation.png'
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
+    plt.savefig(output_path)
+    plt.show()
+
+# --- Execution Block ---
+if __name__ == "__main__":
+    # Perform the estimation with 10,000 points
+    estimate_pi_monte_carlo(n=10000)
