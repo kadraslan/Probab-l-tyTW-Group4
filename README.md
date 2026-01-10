@@ -22,7 +22,7 @@ Installation:
 Requirements: Python 3.8+ and pip (Python package manager).
 Steps:
 
-Clone the repository: git clone https://github.com/Probab-I-lyTW-Group4/IE221_TeamWork4.git
+Clone the repository: git clone [https://github.com/Probab-I-lyTW-Group4/IE221_TeamWork4.git]
 
 Navigate to the project folder: cd IE221_TeamWork4
 
